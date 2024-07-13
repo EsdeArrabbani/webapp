@@ -209,7 +209,7 @@ html {
   position: relative;
   left: 0;
   transform: none;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.35s ease-in-out;
 }
 
 .navbar.active .nav-base .logo-nav {
