@@ -1,0 +1,455 @@
+* {
+  box-sizing: border-box;
+}
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+span {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+a,
+p,
+h4,
+td {
+  font-size: 1rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+span {
+  font-size: 0.9rem;
+}
+.khusus {
+  font-size: 3rem;
+}
+.biasa {
+  font-weight: 600;
+}
+.sedang {
+  font-weight: 700;
+}
+.tebal {
+  font-weight: 800;
+}
+.text-p {
+  height: 1.2rem;
+}
+.text-h1 {
+  height: 3.1rem;
+}
+.text-h2 {
+  height: 2.1rem;
+}
+.text-h3 {
+  height: 1.8rem;
+}
+.text-span {
+  height: 0.9rem;
+}
+.text-khusus {
+  height: 3rem;
+}
+@media screen and (max-width: 479px) {
+  a,
+  p,
+  h4,
+  td {
+    font-size: 0.8rem;
+  }
+  h1 {
+    font-size: 1rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+  span {
+    font-size: 0.7rem;
+  }
+  .khusus {
+    font-size: 1.5rem;
+  }
+  .text-p {
+    height: 1rem;
+  }
+  .text-h1 {
+    height: 1rem;
+  }
+  .text-h2 {
+    height: 1.2rem;
+  }
+  .text-h3 {
+    height: 1.2rem;
+  }
+  .text-span {
+    height: 0.8rem;
+  }
+  .text-khusus {
+    height: 1.5rem;
+  }
+}
+@media (min-width: 480px) and (max-width: 1023px) {
+  a,
+  p,
+  h4,
+  td {
+    font-size: 0.9rem;
+  }
+  h1 {
+    font-size: 2.7rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  h3 {
+    font-size: 1.35rem;
+  }
+  span {
+    font-size: 0.81rem;
+  }
+  .khusus {
+    font-size: 2.7rem;
+  }
+  .text-p {
+    height: 1.1rem;
+  }
+  .text-h1 {
+    height: 2.7rem;
+  }
+  .text-h2 {
+    height: 1.8rem;
+  }
+  .text-h3 {
+    height: 1.35rem;
+  }
+  .text-span {
+    height: 0.81rem;
+  }
+  .text-khusus {
+    height: 2.7rem;
+  }
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background-color: blueviolet;
+  padding: 0.35rem 0.5rem;
+  display: flex;
+}
+.navbar {
+  position: fixed; /* Membuat navbar tetap di tempat */
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  transition: all 0.3s ease-in-out;
+}
+.main {
+  background-color: blue;
+  width: auto; /* Menggunakan 80% lebar untuk main */
+  height: 100%; /* Mengatur tinggi main sesuai viewport */
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1rem; /* Menambah padding untuk konten di dalam main */
+  padding-top: 64px;
+  transition: all 0.3s ease-in-out;
+}
+.navbar .nav-base {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+.navbar .nav-base::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.35s ease-in-out;
+}
+.navbar .nav-base.active:hover::before {
+  opacity: 0;
+}
+
+.navbar .nav-base:hover {
+  color: white;
+}
+.navbar .nav-base .text-menu {
+  margin-left: 1rem;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.25s ease-in-out;
+}
+.navbar .nav-base .logo-nav {
+  display: inline-block;
+  position: relative;
+  left: 0;
+  transform: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar.active .nav-base .logo-nav {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.base-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  width: 20%;
+}
+.base-bar img {
+  height: auto;
+  width: calc(100vh / 13);
+}
+.base-bar img:nth-child(2) {
+  height: auto;
+  width: calc(100vh / 8);
+  margin-left: 0.5rem;
+}
+.line-bar {
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 100%;
+  position: relative;
+}
+.liner {
+  position: absolute;
+  width: 55%;
+  border: 1.5px solid white;
+  transition: all 0.3s ease-in-out;
+}
+.liner:first-child {
+  top: 30%;
+  transform: none;
+}
+.liner:last-child {
+  top: 65%;
+  transform: none;
+}
+.liner:nth-child(2) {
+  width: 55%;
+}
+.line-bar.active .liner:first-child {
+  top: 50%;
+  width: 60%;
+  transform: rotate(45deg);
+}
+
+.line-bar.active .liner:nth-child(2) {
+  width: 0;
+}
+
+.line-bar.active .liner:last-child {
+  top: 50%;
+  width: 60%;
+  transform: rotate(-45deg);
+}
+@media screen and (max-width: 479px) {
+  .navbar {
+    top: auto;
+    padding: 0;
+    width: 100%;
+    height: 64px;
+    flex-direction: row;
+  }
+  .navbar.active {
+    width: 100%;
+  }
+  .main {
+    margin-left: 0;
+  }
+  .main.active {
+    margin-left: 0;
+  }
+  .navbar .nav-base {
+    border-radius: 0;
+    padding: 1.25rem;
+    margin: 0;
+    width: 25%;
+    justify-content: center;
+  }
+  .navbar .nav-base.active {
+    color: aqua;
+  }
+  .navbar .nav-base .text-menu {
+    display: none;
+  }
+  .navbar .nav-base::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: brown;
+    opacity: 0;
+  }
+  .navbar .nav-base:hover::before {
+    width: 50px;
+    opacity: 1;
+  }
+  .navbar .nav-base.active:hover:before {
+    width: 50px;
+    height: 50px;
+  }
+  .navbar .nav-base.active::before {
+    opacity: 0;
+    width: 50px;
+  }
+  .line-bar {
+    display: none;
+  }
+}
+@media (min-width: 480px) and (max-width: 1023px) {
+  .navbar {
+    top: auto;
+    padding: 0;
+    width: 100%;
+    height: 64px;
+    flex-direction: row;
+  }
+  .navbar.active {
+    width: 100%;
+  }
+  .main {
+    margin-left: 0;
+  }
+  .main.active {
+    margin-left: 0;
+  }
+  .navbar .nav-base {
+    border-radius: 0;
+    padding: 1.25rem;
+    margin: 0;
+    width: 25%;
+    justify-content: center;
+  }
+  .navbar .nav-base.active {
+    color: aqua;
+    background-color: transparent;
+  }
+  .navbar .nav-base .text-menu {
+    display: none;
+  }
+  .navbar .nav-base::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: brown;
+    opacity: 0;
+  }
+  .navbar .nav-base:hover::before {
+    width: 50px;
+    opacity: 1;
+  }
+  .navbar .nav-base.active:hover:before {
+    width: 50px;
+    height: 50px;
+  }
+  .navbar .nav-base.active::before {
+    opacity: 0;
+    width: 50px;
+  }
+  .line-bar {
+    display: none;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .navbar {
+    height: calc(100vh - 64px); /* Mengatur tinggi navbar sesuai viewport */
+    width: 20%;
+    top: 64px;
+    padding: 1rem;
+    padding-top: 0;
+    flex-direction: column;
+  }
+  .navbar.active {
+    width: 5%;
+    padding: 0 0.3rem;
+  }
+  .navbar.active .nav-base {
+    width: auto;
+  }
+  .main {
+    margin-left: 20%;
+  }
+  .main.active {
+    margin-left: 5%;
+  }
+  .navbar .nav-base {
+    justify-content: flex-start;
+    padding: 0.75rem;
+    border-radius: 15px;
+    margin: 0.55rem 0;
+    width: 100%;
+  }
+  .navbar .nav-base.active {
+    background-color: aqua;
+    color: white;
+  }
+  .navbar .nav-base .text-menu {
+    display: block;
+    max-width: fit-content;
+  }
+  .navbar.active .nav-base .text-menu {
+    opacity: 0;
+    max-width: 0;
+    margin-left: 0;
+    visibility: hidden;
+  }
+  .navbar .nav-base::before {
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 0;
+    height: 100%;
+    border-radius: 15px;
+    background-color: brown;
+    opacity: 1;
+  }
+  .navbar .nav-base:hover::before {
+    width: 100%;
+    opacity: 1;
+  }
+  .navbar .nav-base.active:hover:before {
+    width: 100%;
+    opacity: 0;
+  }
+  .navbar .nav-base.active:before {
+    width: 100%;
+    opacity: 0;
+  }
+  .line-bar {
+    display: flex;
+  }
+}
