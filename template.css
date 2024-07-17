@@ -1,3 +1,13 @@
+:root {
+  --utama: #396b1c;
+  --hijau: #2ca14e;
+  --kuning: #e8a60f;
+  --abu-abu: #7c7c7c;
+  --dasar: #eff1f4;
+  --border: #eff1f4;
+  --hijau-cerah: #d3eed9;
+  --merah: #fec9c9;
+}
 * {
   box-sizing: border-box;
 }
@@ -146,7 +156,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  height: 100%;
+  font-family: "Inter", sans-serif;
 }
 .top-bar {
   position: fixed;
@@ -154,9 +164,11 @@ html {
   left: 0;
   width: 100%;
   height: 64px;
-  background-color: blueviolet;
+  background-color: white;
   padding: 0.35rem 0.5rem;
   display: flex;
+  z-index: 6;
+  transition: all 0.35s ease-in-out;
 }
 .navbar {
   position: fixed; /* Membuat navbar tetap di tempat */
@@ -166,16 +178,23 @@ html {
   bottom: 0;
   display: flex;
   transition: all 0.3s ease-in-out;
+  z-index: 5;
 }
 .main {
-  background-color: blue;
+  background-color: var(--dasar);
   width: auto; /* Menggunakan 80% lebar untuk main */
-  height: 100%; /* Mengatur tinggi main sesuai viewport */
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 1rem; /* Menambah padding untuk konten di dalam main */
-  padding-top: 64px;
+  min-height: 100vh;
+  max-height: 100%;
+  overflow: hidden;
+  padding: 1rem;
   transition: all 0.3s ease-in-out;
+}
+.main-page {
+  padding-top: 1rem;
+  background-color: white;
+  width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 .navbar .nav-base {
   display: flex;
@@ -202,19 +221,18 @@ html {
   margin-left: 1rem;
   opacity: 1;
   visibility: visible;
-  transition: all 0.25s ease-in-out;
 }
 .navbar .nav-base .logo-nav {
   display: inline-block;
   position: relative;
   left: 0;
   transform: none;
-  transition: all 0.35s ease-in-out;
 }
 
 .navbar.active .nav-base .logo-nav {
   left: 50%;
   transform: translateX(-50%);
+  transition: all 0.3s ease-in-out;
 }
 .base-bar {
   display: flex;
@@ -242,7 +260,7 @@ html {
 .liner {
   position: absolute;
   width: 55%;
-  border: 1.5px solid white;
+  border: 1.5px solid black;
   transition: all 0.3s ease-in-out;
 }
 .liner:first-child {
@@ -271,7 +289,85 @@ html {
   width: 60%;
   transform: rotate(-45deg);
 }
+.form-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  display: flex;
+}
+.search {
+  width: 100%;
+  padding: 0.75rem;
+  padding-left: 2.5rem;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  transition: all 0.25s ease-in-out;
+}
+.search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  background-color: darkgray;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
+  background-size: contain;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+.search:focus {
+  outline: none;
+}
+.ico {
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+  transition: all 0.2s ease;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 0.3rem 0.7rem;
+  text-decoration: none;
+  width: fit-content !important;
+  height: fit-content !important;
+}
+.btn-yellow {
+  background-color: #f1eac8da;
+  color: var(--kuning);
+  border: 1px solid #e8a70f3a;
+}
+.btn-green {
+  background-color: var(--hijau-cerah);
+  color: var(--hijau);
+  border: 1px solid #2ca14d3a;
+}
+.btn-gray {
+  background-color: #e6e6e6;
+  color: var(--abu-abu);
+  border: 1px solid #7c7c7c41;
+}
+.btn-utama {
+  background-color: var(--utama);
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
+.btn-red {
+  background-color: var(--merah);
+  color: red;
+  border: 1px solid #f88;
+}
 @media screen and (max-width: 479px) {
+  .top-bar {
+    background-color: transparent;
+    backdrop-filter: none;
+  }
+  .top-bar.scroll {
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+  }
   .navbar {
     top: auto;
     padding: 0;
@@ -283,7 +379,16 @@ html {
     width: 100%;
   }
   .main {
+    margin-top: 0;
+    padding-top: calc(64px + 1rem);
+    padding-left: 0;
+    padding-right: 0;
     margin-left: 0;
+  }
+  .main-page {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 64px;
   }
   .main.active {
     margin-left: 0;
@@ -293,10 +398,11 @@ html {
     padding: 1.25rem;
     margin: 0;
     width: 25%;
+    color: rgba(0, 0, 0, 0.5);
     justify-content: center;
   }
   .navbar .nav-base.active {
-    color: aqua;
+    color: var(--utama);
   }
   .navbar .nav-base .text-menu {
     display: none;
@@ -308,7 +414,7 @@ html {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: brown;
+    background-color: rgba(0, 0, 0, 0.3);
     opacity: 0;
   }
   .navbar .nav-base:hover::before {
@@ -326,8 +432,33 @@ html {
   .line-bar {
     display: none;
   }
+  .search {
+    background-color: var(--dasar);
+    box-shadow: none;
+  }
+  .ico {
+    color: darkgray;
+  }
+  .search::placeholder {
+    color: darkgray;
+  }
+  .search:focus {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+  }
+  .search:focus + .ico {
+    color: darkgray;
+  }
 }
 @media (min-width: 480px) and (max-width: 1023px) {
+  .top-bar {
+    background-color: var(--dasar);
+    backdrop-filter: none;
+  }
+  .top-bar.scroll {
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+  }
   .navbar {
     top: auto;
     padding: 0;
@@ -339,10 +470,19 @@ html {
     width: 100%;
   }
   .main {
+    margin-top: 0;
+    padding-top: calc(64px + 1rem);
+    padding-left: 0;
+    padding-right: 0;
     margin-left: 0;
   }
   .main.active {
     margin-left: 0;
+  }
+  .main-page {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 64px;
   }
   .navbar .nav-base {
     border-radius: 0;
@@ -350,9 +490,10 @@ html {
     margin: 0;
     width: 25%;
     justify-content: center;
+    color: rgba(0, 0, 0, 0.5);
   }
   .navbar .nav-base.active {
-    color: aqua;
+    color: var(--utama);
     background-color: transparent;
   }
   .navbar .nav-base .text-menu {
@@ -365,7 +506,7 @@ html {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: brown;
+    background-color: rgba(0, 0, 0, 0.3);
     opacity: 0;
   }
   .navbar .nav-base:hover::before {
@@ -383,8 +524,33 @@ html {
   .line-bar {
     display: none;
   }
+  .search {
+    background-color: var(--dasar);
+    box-shadow: none;
+  }
+  .ico {
+    color: darkgray;
+  }
+  .search::placeholder {
+    color: darkgray;
+  }
+  .search:focus {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+  }
+  .search:focus + .ico {
+    color: darkgray;
+  }
 }
 @media screen and (min-width: 1024px) {
+  .top-bar {
+    background-color: white;
+    backdrop-filter: none;
+  }
+  .top-bar.scroll {
+    background-color: white;
+    backdrop-filter: none;
+  }
   .navbar {
     height: calc(100vh - 64px); /* Mengatur tinggi navbar sesuai viewport */
     width: 20%;
@@ -401,7 +567,14 @@ html {
     width: auto;
   }
   .main {
+    margin-top: 64px;
+    padding-top: 1rem;
     margin-left: 20%;
+  }
+  .main-page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
   }
   .main.active {
     margin-left: 5%;
@@ -414,12 +587,14 @@ html {
     width: 100%;
   }
   .navbar .nav-base.active {
-    background-color: aqua;
+    background-color: var(--utama);
     color: white;
   }
   .navbar .nav-base .text-menu {
     display: block;
     max-width: fit-content;
+    transition: opacity 0.25s ease, max-width 0.2s ease, margin-left 0.2s ease,
+      visibility 0.2s;
   }
   .navbar.active .nav-base .text-menu {
     opacity: 0;
@@ -434,7 +609,7 @@ html {
     width: 0;
     height: 100%;
     border-radius: 15px;
-    background-color: brown;
+    background-color: var(--utama);
     opacity: 1;
   }
   .navbar .nav-base:hover::before {
@@ -451,5 +626,22 @@ html {
   }
   .line-bar {
     display: flex;
+  }
+  .search {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
+  }
+  .ico {
+    color: black;
+  }
+  .search::placeholder {
+    color: lightgray;
+  }
+  .search:focus {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+  }
+  .search:focus + .ico {
+    color: lightgray;
   }
 }
