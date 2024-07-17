@@ -1,277 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="template.css" />
     <style>
-        *{
-            box-sizing: border-box;
+      .data-content {
+        width: 100%;
+        padding-top: 1rem;
+      }
+      .header-content,
+      .body-content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        flex-wrap: nowrap;
+      }
+      .header-content p {
+        width: 25%;
+      }
+      .body-content {
+        flex-direction: column;
+      }
+      .body-content .data-siswa {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
+        padding: 0.75rem 0;
+        position: relative;
+      }
+      .body-content .data-siswa::after {
+        content: "";
+        position: absolute; /* Memposisikan pseudo-elemen di luar elemen */
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px; /* Tinggi border */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15); /* Penting agar lebar pseudoelemen termasuk padding */ /* Penting agar lebar pseudoelemen termasuk padding */
+      }
+      .body-content .data-siswa p,
+      .body-content .data-siswa span {
+        width: 25%;
+        display: block;
+      }
+      .body-content .data-siswa p {
+        padding-right: 0.3rem;
+      }
+      @media screen and (max-width: 479px) {
+        .data-content {
+          padding-top: 0.5rem;
         }
-         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+        .header-content {
+          display: none;
         }
-        .top-bar{
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 64px;
-            background-color: blueviolet;
+        .data-siswa {
+          flex-wrap: wrap !important;
         }
-        .navbar {
-            position: fixed; /* Membuat navbar tetap di tempat */
-            background-color: white;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-            left: 0;
-            bottom: 0;
-            
-            display: flex;
+        .body-content .data-siswa::after {
+          content: "";
+          position: absolute; /* Memposisikan pseudo-elemen di luar elemen */
+          left: -1.5rem;
+          bottom: 0;
+          width: calc(100% + 3rem);
+          height: 1px; /* Tinggi border */
         }
-        .main { 
-            background-color: blue;
-            width: auto; /* Menggunakan 80% lebar untuk main */
-            height: 100%; /* Mengatur tinggi main sesuai viewport */
-            overflow-x: hidden;
-            overflow-y: auto;
-            padding: 1rem; /* Menambah padding untuk konten di dalam main */
-            padding-top: 64px;
+        .body-content .data-siswa p:first-child {
+          width: 80%;
         }
-        .navbar .nav-base{
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.2s ease;
-            position: relative;
+        .body-content .data-siswa p:nth-child(3) {
+          width: 100%;
+          order: 3;
         }
-        .navbar .nav-base::before{
-            content: '';
-            position: absolute;
-            z-index: -1;
-            transition: all 0.35s ease-in-out;
+        .body-content .data-siswa p:last-child {
+          width: 20%;
         }
-        .navbar .nav-base.active:hover::before{
-            opacity: 0;
+        .body-content .data-siswa p:nth-child(2) {
+          display: none;
         }
-        
-        .navbar .nav-base:hover{
-            color: white;
-        }
-        .navbar .nav-base span:nth-child(2){
-            margin-left: 1rem;
-        }
-        @media screen and (max-width: 479px) {
-            .navbar {
-                top: auto;
-                padding: 0;
-                width: 100%;
-                height: 64px;
-                flex-direction: row;
-            }
-            .main{
-                margin-left: 0;
-            }
-            .navbar .nav-base{
-                border-radius: 0;
-                padding: 1.25rem;
-                margin: 0;
-                width: 25%;
-                justify-content: center;
-            }
-            .navbar .nav-base.active{
-                color: aqua;
-                background-color: transparent;
-            }
-            .navbar .nav-base span:nth-child(2){
-                display:none;
-            }
-            .navbar .nav-base::before{
-                left: 22.5%;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background-color: brown;
-                opacity: 0;
-            }
-            .navbar .nav-base:hover::before{
-                width: 50px;
-                opacity: 1;
-            }
-            .navbar .nav-base.active:hover:before{
-                width: 50px;
-                height: 50px;
-            }
-            .navbar .nav-base.active::before{
-                opacity: 0;
-                width: 50px;
-            }
-        }
-        @media (min-width: 480px) and (max-width: 1023px) {
-            .navbar {
-                top: auto;
-                padding: 0;
-                width: 100%;
-                height: 64px;
-                flex-direction: row;
-            }
-            .main{
-                margin-left: 0;
-            }
-            .navbar .nav-base{
-                border-radius: 0;
-                padding: 1.25rem;
-                margin: 0;
-                width: 25%;
-                justify-content: center;
-            }
-            .navbar .nav-base.active{
-                color: aqua;
-                background-color: transparent;
-            }
-            .navbar .nav-base span:nth-child(2){
-                display:none;
-            }
-            .navbar .nav-base::before{
-                left: 22.5%;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background-color: brown;
-                opacity: 0;
-            }
-            .navbar .nav-base:hover::before{
-                width: 50px;
-                opacity: 1;
-            }
-            .navbar .nav-base.active:hover:before{
-                width: 50px;
-                height: 50px;
-            }
-            .navbar .nav-base.active::before{
-                opacity: 0;
-                width: 50px;
-            }
-        }
-        @media screen and (min-width: 1024px) {
-            .navbar {
-                height: calc(100vh - 64px); /* Mengatur tinggi navbar sesuai viewport */
-                width: 20%;
-                top: 64px;
-                padding: 1rem;
-                padding-top: 0;
-                flex-direction: column;
-            }
-            .main{
-                margin-left: 20%;
-            }
-            .navbar .nav-base{  
-                justify-content: flex-start;
-                padding: 0.75rem;
-                border-radius: 15px;
-                margin: 0.55rem 0;
-                width: 100%;
-            }
-            .navbar .nav-base.active{
-                background-color: aqua;
-                color: white;
-            }
-            .navbar .nav-base span:nth-child(2){
-                display:block;
-            }
-            .navbar .nav-base::before{
-                left: 0;
-                width: 0;
-                height: 100%;
-                border-radius: 15px;
-                background-color: brown;
-                opacity: 1;
-            }
-            .navbar .nav-base:hover::before{
-                width: 100%;
-                opacity: 1;
-            }
-            .navbar .nav-base.active:hover:before{
-                width: 100%;
-                height: 100%;
-            }
-            
-        }
+      }
     </style>
-</head>
-<body>
-    <div class="top-bar"></div>
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="base-bar">
+        <img src="public/images/mobile/logo.png" alt="" />
+        <img src="public/images/mobile/header.png" alt="" />
+      </div>
+      <div id="menu-bar" class="line-bar">
+        <div class="liner"></div>
+        <div class="liner"></div>
+        <div class="liner"></div>
+      </div>
+    </div>
     <div class="navbar">
-        <div class="nav-base active" id="spp">
-            <span class="material-symbols-outlined">account_balance_wallet</span>
-            <span>SPP</span>
-        </div>
-        <div class="nav-base" id="kegiatan">
-            <span class="material-symbols-outlined">school</span>
-            <span>Kegiatan</span>
-        </div>
-        <div class="nav-base" id="buku">
-            <span class="material-symbols-outlined">book_5</span>
-            <span>Buku</span>
-        </div>
-        <div class="nav-base" id="baju">
-            <span class="material-symbols-outlined">shopping_bag</span>
-            <span>Baju</span>
-        </div>
+      <div class="nav-base active" id="spp">
+        <p class="material-symbols-outlined logo-nav">account_balance_wallet</p>
+        <p class="text-menu">SPP</p>
+      </div>
+      <div class="nav-base" id="kegiatan">
+        <p class="material-symbols-outlined logo-nav">school</p>
+        <p class="text-menu">Kegiatan</p>
+      </div>
+      <div class="nav-base" id="buku">
+        <p class="material-symbols-outlined logo-nav">book_5</p>
+        <p class="text-menu">Buku</p>
+      </div>
+      <div class="nav-base" id="baju">
+        <p class="material-symbols-outlined logo-nav">shopping_bag</p>
+        <p class="text-menu">Baju</p>
+      </div>
     </div>
     <div class="main">
-        <div id="content-spp" style="display:block;">
-            <h2>Konten SPP</h2>
-            <p>Ini adalah konten untuk SPP.</p>
+      <div class="main-page">
+        <div id="content-spp" style="display: block">
+          <form action="" method="">
+            <div class="form-container">
+              <input
+                class="search"
+                type="search"
+                name="search"
+                id="search"
+                placeholder="Cari nama siswa"
+              />
+              <i class="material-symbols-outlined ico"> search </i>
+            </div>
+          </form>
+          <h2 class="sedang">Data Pembayaran SPP</h2>
+          <div class="data-content">
+            <div class="header-content">
+              <p class="sedang">Nama</p>
+              <p class="sedang">Sisa Bulan</p>
+              <p class="sedang">Tagihan</p>
+              <p class="sedang">Status</p>
+            </div>
+            <div class="body-content">
+              <div class="data-siswa">
+                <p class="sedang">Nurul Mujahidah Qaulan Tsaqilah</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-red">Belum</span>
+              </div>
+              <div class="data-siswa">
+                <p class="sedang">Tsaqilah Faris Mumtaz Prasejo</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-green">Sudah</span>
+              </div>
+              <div class="data-siswa">
+                <p class="sedang">Muhammad Achdan Massaniga</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-green">Sudah</span>
+              </div>
+              <div class="data-siswa">
+                <p class="sedang">Nurul Mujahidah Qaulan Tsaqilah</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-red">Belum</span>
+              </div>
+              <div class="data-siswa">
+                <p class="sedang">Tsaqilah Faris Mumtaz Prasejo</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-green">Sudah</span>
+              </div>
+              <div class="data-siswa">
+                <p class="sedang">Muhammad Achdan Massaniga</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-green">Sudah</span>
+              </div>
+              <div class="data-siswa">
+                <p class="sedang">Nurul Mujahidah Qaulan Tsaqilah</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-red">Belum</span>
+              </div>
+              <div class="data-siswa">
+                <p class="sedang">Tsaqilah Faris Mumtaz Prasejo</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-green">Sudah</span>
+              </div>
+              <div class="data-siswa">
+                <p class="sedang">Muhammad Achdan Massaniga</p>
+                <p>3 Bulan</p>
+                <p>Rp. 300,000</p>
+                <span class="btn btn-green">Sudah</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="content-kegiatan" style="display:none;">
-            <h2>Konten Kegiatan</h2>
-            <p>Ini adalah konten untuk Kegiatan.</p>
+        <div id="content-kegiatan" style="display: none">
+          <h2>Konten Kegiatan</h2>
+          <p>Ini adalah konten untuk Kegiatan.</p>
         </div>
-        <div id="content-buku" style="display:none;">
-            <h2>Konten Buku</h2>
-            <p>Ini adalah konten untuk Buku.</p>
+        <div id="content-buku" style="display: none">
+          <h2>Konten Buku</h2>
+          <p>Ini adalah konten untuk Buku.</p>
         </div>
-        <div id="content-baju" style="display:none;">
-            <h2>Konten Baju</h2>
-            <p>Ini adalah konten untuk Baju.</p>
+        <div id="content-baju" style="display: none">
+          <h2>Konten Baju</h2>
+          <p>Ini adalah konten untuk Baju.</p>
         </div>
+      </div>
     </div>
+    <script src="template.js"></script>
     <script>
-        // Ambil semua nav-base
-        const navBases = document.querySelectorAll('.nav-base');
+      // Ambil elemen .top-bar
+      const topBar = document.querySelector(".top-bar");
+      // Ambil elemen .main
+      const mainku = document.querySelector(".main");
 
-        // Tambahkan event listener untuk setiap nav-base
-        navBases.forEach(function(navBase) {
-            navBase.addEventListener('click', function() {
-                // Hapus kelas active dari semua nav-base
-                navBases.forEach(function(item) {
-                    item.classList.remove('active');
-                });
-                // Tambahkan kelas active pada nav-base yang diklik
-                navBase.classList.add('active');
-
-                // Tampilkan konten yang sesuai dengan nav-base yang diklik
-                showContent(navBase.id);
-            });
-        });
-
-        // Fungsi untuk menampilkan konten yang sesuai dengan id
-        function showContent(id) {
-            // Semua konten di div .main diubah menjadi display: none; terlebih dahulu
-            const allContents = document.querySelectorAll('.main > div');
-            allContents.forEach(function(content) {
-                content.style.display = 'none';
-            });
-
-            // Kemudian konten yang sesuai ditampilkan
-            const contentElement = document.getElementById('content-' + id);
-            contentElement.style.display = 'block';
+      // Buat event listener untuk mendengarkan peristiwa scroll
+      window.addEventListener("scroll", function () {
+        // Periksa posisi scroll
+        if (window.scrollY > 0) {
+          // Jika .main digeser (scroll), tambahkan kelas .scroll ke .top-bar
+          topBar.classList.add("scroll");
+        } else {
+          // Jika tidak, hapus kelas .scroll dari .top-bar
+          topBar.classList.remove("scroll");
         }
+      });
     </script>
-
-</body>
+  </body>
 </html>
