@@ -19,7 +19,7 @@ navBases.forEach(function (navBase) {
 // Fungsi untuk menampilkan konten yang sesuai dengan id
 function showContent(id) {
   // Semua konten di div .main diubah menjadi display: none; terlebih dahulu
-  const allContents = document.querySelectorAll(".main > div");
+  const allContents = document.querySelectorAll(".main-page > div");
   allContents.forEach(function (content) {
     content.style.display = "none";
   });
