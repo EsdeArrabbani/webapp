@@ -1,3 +1,50 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const pencarianSpp = document.getElementById('search-spp');
+    const listSpp = document.querySelectorAll('#pencarian-spp .data-siswa');
+    const noResultsMessage = document.createElement('p');
+    noResultsMessage.textContent = 'Data tidak ditemukan';
+    noResultsMessage.style.display = 'none';
+    noResultsMessage.classList.add('p-1');
+
+    const searchContainer = document.getElementById('pencarian-spp');
+    searchContainer.appendChild(noResultsMessage);
+
+    pencarianSpp.addEventListener('input', function() {
+      const searchTerm = pencarianSpp.value.toLowerCase();
+      let foundSpp = false;
+
+      listSpp.forEach(function(item) {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          item.style.display = 'flex';
+          foundSpp = true;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if(foundSpp){
+        noResultsMessage.style.display = "none";
+      } else {
+        noResultsMessage.style.display = "block";
+      }
+
+    });
+
+
+const topBar = document.querySelector(".top-bar");
+// Buat event listener untuk mendengarkan peristiwa scroll
+window.addEventListener("scroll", function () {
+  // Periksa posisi scroll
+  if (window.scrollY > 0) {
+    // Jika .main digeser (scroll), tambahkan kelas .scroll ke .top-bar
+    topBar.classList.add("scroll");
+  } else {
+    // Jika tidak, hapus kelas .scroll dari .top-bar
+    topBar.classList.remove("scroll");
+  }
+});
+
 // Ambil semua nav-base
 const navBases = document.querySelectorAll(".nav-base");
 
@@ -35,4 +82,5 @@ menu.addEventListener("click", function () {
   this.classList.toggle("active");
   nav.classList.toggle("active");
   main.classList.toggle("active");
+});
 });
